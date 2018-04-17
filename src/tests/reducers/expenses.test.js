@@ -39,7 +39,7 @@ test('Should add a new expense', () => {
     expense
   };
   const state = expensesReducer(expenses, action);
-  expect(state).toEqual(...expenses, expense);
+  expect(state).toEqual([...expenses, expense]);
 });
 
 test('Should edit a expense by id', () => {
