@@ -2,3 +2,7 @@
 node_modules
 
 # Generated files
+.directory
+
+# Error logs files
+yarn-error.log
