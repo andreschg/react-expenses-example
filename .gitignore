@@ -1,6 +1,12 @@
 # Node modules folder
 node_modules
 
+# Compiled files
+public/bundle.js
+public/bundle.js.map
+public/styles.css
+public/styles.css.map
+
 # Generated files
 .directory
 
