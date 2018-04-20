@@ -2,10 +2,7 @@
 node_modules
 
 # Compiled files
-public/bundle.js
-public/bundle.js.map
-public/styles.css
-public/styles.css.map
+public/dist/
 
 # Generated files
 .directory
