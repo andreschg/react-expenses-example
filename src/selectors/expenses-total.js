@@ -1,0 +1,1 @@
+export default (expenses) => expenses.reduce((before, current) => before + current.amount, 0);
