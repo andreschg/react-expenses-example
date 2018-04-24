@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Andres Chaves",
   "license": "UNLICENSED",
+  "engines": {
+    "node": "8.9.4"
+  },
   "scripts": {
     "serve": "live-server public/",
     "build": "webpack",
