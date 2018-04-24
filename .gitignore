@@ -9,3 +9,7 @@ public/dist/
 
 # Error logs files
 yarn-error.log
+
+# Environment files
+.env.test
+.env.development

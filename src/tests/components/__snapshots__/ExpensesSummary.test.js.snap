@@ -2,22 +2,26 @@
 
 exports[`Should render Expeneses summary componentes with no data 1`] = `
 <div>
-  <p>
+  <h1>
     Viewing 
     0
-     expenses totalling 
+     
+    expeneses
+     totalling 
     $0.00
-  </p>
+  </h1>
 </div>
 `;
 
 exports[`Should render ExpensesSummary component correctly 1`] = `
 <div>
-  <p>
+  <h1>
     Viewing 
     3
-     expenses totalling 
+     
+    expeneses
+     totalling 
     $1,141.95
-  </p>
+  </h1>
 </div>
 `;
