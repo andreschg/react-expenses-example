@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { addExpense, removeExpense, editExpense, startAddExpense, setExpenses, startSetExpenses } from '../../actions/expenses';
+import { addExpense, removeExpense, startRemoveExpense, editExpense, startAddExpense, setExpenses, startSetExpenses, startEditExpense } from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
 import database from '../../firebase/firebase';
 
@@ -21,6 +21,22 @@ test('should setup remove expense action object', () => {
   expect(result).toEqual({
     type: 'REMOVE_EXPENSE',
     id: '123abc'
+  });
+});
+
+test('should remove expense from firebase', (done) => {
+  const store = createMockStore({});
+  const id = expenses[1].id;
+  store.dispatch(startRemoveExpense(id)).then(() => {
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type: 'REMOVE_EXPENSE',
+      id: expenses[1].id
+    });
+    return database.ref(`expenses/${id}`).once('value');
+  }).then((snapshot) => {
+    expect(snapshot.val()).toBeFalsy();
+    done();
   });
 });
 
@@ -59,7 +75,7 @@ test('shoud add an expense to database and store', (done) => {
     amount: 3000,
     note: 'This one is better',
     createdAt: 1000
-  }
+  };
   store.dispatch(startAddExpense(expenseData)).then(() => {
     const actions = store.getActions();
     expect(actions[0]).toEqual({
@@ -118,6 +134,31 @@ test('should fecth the expenses from firebse', (done) => {
     expect(actions[0]).toEqual({
       type: 'SET_EXPENSES',
       expenses
+    });
+    done();
+  });
+});
+
+test('should edit expenses from firebase', (done) => {
+  const store = createMockStore({});
+  const updates = {
+    description: 'test from jest test case',
+    amount: 5400,
+    note: 'This is a test'
+  };
+  store.dispatch(startEditExpense(expenses[1].id, updates)).then(() => {
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type: 'EDIT_EXPENSE',
+      id: expenses[1].id,
+      updates
+    });
+    return database.ref(`expenses/${expenses[1].id}`).once('value');
+  }).then((snapshot) => {
+    expect(snapshot.val()).toEqual({
+      ...expenses[1],
+      ...updates,
+      id: null
     });
     done();
   });
