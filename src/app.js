@@ -22,7 +22,7 @@ const jsx = (
 
 let hasRendered = false;
 const renderApp = () => {
-  if (!hasBasename) {
+  if (!hasRendered) {
     ReactDOM.render(jsx, document.getElementById('app'));
     hasRendered = true;
   }
