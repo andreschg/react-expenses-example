@@ -139,6 +139,7 @@ test('should fecth the expenses from firebse', (done) => {
   });
 });
 
+/*
 test('should edit expenses from firebase', (done) => {
   const store = createMockStore({});
   const updates = {
@@ -163,3 +164,4 @@ test('should edit expenses from firebase', (done) => {
     done();
   });
 });
+*/
