@@ -26,6 +26,7 @@ module.exports = (env) => {
       }, {
         test: /\.s?css$/,
         use: CSSExtract.extract({
+          fallback: 'style-loader',
           use: [
           {
             loader: 'css-loader',
@@ -33,11 +34,15 @@ module.exports = (env) => {
               sourceMap: true
             }
           },{
+            loader: 'resolve-url-loader'
+          },{
             loader: 'sass-loader',
             options: {
-              sourceMap: true
+              sourceMap: true,
+              includePaths: [path.join(__dirname, 'public', 'images')]
             }
-          }          ]
+          }          
+        ]
         })
       }]
     },
